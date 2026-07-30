@@ -1,12 +1,10 @@
-import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 import ru.netology.service.CashbackHackService;
-
-
 
 public class CashbackHackServiceTest {
     @Test
-    public void shouldCalculateIfAmountLessThen1000() {
+    public void shouldCalculateCashbackIfAmountLessThen1000() {
         CashbackHackService service = new CashbackHackService();
 
         int expected = 200;
@@ -16,7 +14,7 @@ public class CashbackHackServiceTest {
     }
 
     @Test
-    public void shouldCalculateIfAmountMoreThen1000() {
+    public void shouldCalculateCashbackIfAmountMoreThen1000() {
         CashbackHackService service = new CashbackHackService();
 
         int expected = 500;
@@ -26,12 +24,32 @@ public class CashbackHackServiceTest {
     }
 
     @Test
-    public void shouldCalculateIfAmountIs1000() {
+    public void shouldCalculateCashbackIfAmountIs1000() {
         CashbackHackService service = new CashbackHackService();
 
-        int expected = 1000;
+        int expected = 0;
         int actual = service.remain(1000);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldCalculateCashbackIfAmount999() {
+        CashbackHackService service = new CashbackHackService();
+
+        int expected = 1;
+        int actual = service.remain(999);
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldCalculateCashbackIfAmount1001() {
+        CashbackHackService service = new CashbackHackService();
+
+        int expected = 999;
+        int actual = service.remain(1001);
+
+        assertEquals(expected,actual);
     }
 }
